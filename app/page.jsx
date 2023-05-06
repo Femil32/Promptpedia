@@ -1,4 +1,5 @@
 import React from "react";
+import Feed from "@/components/Feed";
 
 function Home() {
   return (
@@ -12,6 +13,8 @@ function Home() {
         Promptpedia is an open-source AI prompting tool for modern world to
         Discover, Ceate and Share creative prompts.
       </p>
+
+      <Feed />
     </section>
   );
 }
