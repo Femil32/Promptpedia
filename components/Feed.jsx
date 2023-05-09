@@ -21,16 +21,19 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+
   // Fetch posts from the API
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
     setAllPosts(data);
   };
+
   // Fetch posts when component mounts
   useEffect(() => {
     fetchPosts();
   }, []);
+
   // Filter prompts based on search text
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
@@ -41,6 +44,7 @@ const Feed = () => {
         regex.test(item.prompt)
     );
   };
+
   // Handle change in search input
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);
@@ -52,12 +56,14 @@ const Feed = () => {
       }, 500)
     );
   };
+
   // Handle click on a tag
   const handleTagClick = (tagName) => {
     setSearchText(tagName);
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
+
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
